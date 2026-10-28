@@ -1,4 +1,5 @@
 local has_telescope = pcall(require, "telescope")
+local has_fzf_lua = pcall(require, "fzf-lua")
 local has_snacks, snacks_picker = pcall(require, "snacks.picker")
 
 local Config = require("kulala.config")
@@ -258,13 +259,84 @@ local function open_auth_snacks()
   }
 end
 
+local function open_auth_fzf()
+  local env, cur_env = get_env(true)
+  local config_names = vim.tbl_keys(env)
+  table.sort(config_names, function(a, b)
+    return a:lower() < b:lower()
+  end)
+
+  local env_file_path = get_env_file()
+  if not env_file_path then return Logger.warn("http-client.env.json not found") end
+
+  local fzf = require("fzf-lua")
+  local builtin_previewer = require("fzf-lua.previewer.builtin")
+  local auth_previewer = builtin_previewer.base:extend()
+
+  function auth_previewer:new(o, opts, fzf_win)
+    auth_previewer.super.new(self, o, opts, fzf_win)
+    setmetatable(self, auth_previewer)
+    return self
+  end
+
+  function auth_previewer:populate_preview_buf(entry_str)
+    local buf = self:get_tmp_buffer()
+    set_buffer(buf, env[entry_str])
+    self:set_preview_buf(buf)
+  end
+
+  function auth_previewer:gen_winopts()
+    return vim.tbl_extend("force", self.winopts, { wrap = false, number = false, relativenumber = false })
+  end
+
+  local picker = { close = function() end }
+
+  local run_cmd = function(key, selected)
+    local name = selected and selected[1]
+    if key ~= "a" and not name then return end
+    if commands[key][1](name, picker) == true then return end
+    M.open_auth_config()
+  end
+
+  local actions = {
+    default = function(selected)
+      run_cmd("e", selected)
+    end,
+  }
+
+  vim.iter(commands):each(function(key)
+    actions["alt-" .. key] = function(selected)
+      run_cmd(key, selected)
+    end
+  end)
+
+  fzf.fzf_exec(config_names, {
+    prompt = "Select auth config ",
+    header = keys_hint:gsub("(%a):", "alt-%1:"),
+    previewer = auth_previewer,
+    actions = actions,
+    winopts = {
+      title = (" Auth Configurations (%s) "):format(cur_env),
+      preview = {
+        title = true,
+      },
+    },
+    fzf_opts = {
+      ["--layout"] = "reverse-list",
+      ["--no-multi"] = true,
+    },
+  })
+end
+
 M.open_auth_config = function()
   if has_snacks then
     open_auth_snacks()
   elseif has_telescope then
     open_auth_telescope()
+  elseif has_fzf_lua then
+    open_auth_fzf()
   else
-    Logger.warn("Telescope or Snacks is required for auth token management")
+    Logger.warn("Telescope, FzfLua or Snacks is required for auth token management")
   end
 end
 
