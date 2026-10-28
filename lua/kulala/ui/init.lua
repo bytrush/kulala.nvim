@@ -230,8 +230,9 @@ local function update_filter()
   if not filter:find("JQ Filter") then return end
 
   filter = vim.trim(filter:sub(12))
-  Ext_processing.jq(filter, get_current_response())
-  M.show_body()
+  if Ext_processing.jq(filter, get_current_response()) then
+    M.show_body()
+  end
 end
 
 M.toggle_filter = function()

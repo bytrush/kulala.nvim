@@ -55,18 +55,21 @@ end
 M.env_stdin_cmd_pre = M.env_stdin_cmd
 
 M.jq = function(filter, response)
-  if vim.tbl_keys(response.json) == 0 then return end
+  if type(filter) ~= "string" or vim.trim(filter) == "" then return false end
+  local raw = response.body_raw
+  if type(raw) ~= "string" or raw == "" then return false end
 
   local result = Shell.run(
     { "jq", filter },
     { sync = true, stdin = response.body_raw, err_msg = "Failed to filter with jq", abort_on_stderr = true }
   )
 
-  if not result or result.stdout == "" then return end
+  if not result or result.stdout == "" then return false end
 
   response.body = result.stdout
   response.json = Json.parse(result.stdout, { verbose = false }) or response.json
   response.filter = filter
+  return true
 end
 
 return M
