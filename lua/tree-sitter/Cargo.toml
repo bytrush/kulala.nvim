@@ -7,7 +7,7 @@ license = "MIT"
 readme = "README.md"
 keywords = ["incremental", "parsing", "tree-sitter", "kulala-http"]
 categories = ["parser-implementations", "parsing", "text-editors"]
-repository = "https://github.com/mistweaverco/kulala.nvim/lua/tree-sitter"
+repository = "https://github.com/bytrush/kulala.nvim/lua/tree-sitter"
 edition = "2021"
 autoexamples = false
 

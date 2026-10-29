@@ -13,7 +13,7 @@ local Table = require("kulala.utils.table")
 local M = {}
 
 local template = {
-  ["$schema"] = "https://raw.githubusercontent.com/mistweaverco/kulala.nvim/main/schemas/http-client.env.schema.json",
+  ["$schema"] = "https://raw.githubusercontent.com/bytrush/kulala.nvim/main/schemas/http-client.env.schema.json",
   ["$shared"] = {
     ["$default_headers"] = {},
   },

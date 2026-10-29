@@ -2,8 +2,8 @@
   "name": "tree-sitter-kulala-http",
   "version": "0.1.0",
   "description": "Kulala HTTP Parser",
-  "repository": "https://github.com/mistweaverco/kulala.nvim/lua/tree-sitter",
-  "funding": "https://github.com/mistweaverco/kulala.nvim",
+  "repository": "https://github.com/bytrush/kulala.nvim/lua/tree-sitter",
+  "funding": "https://github.com/bytrush/kulala.nvim",
   "license": "MIT",
   "author": {
     "name": "Yaro Apletov",

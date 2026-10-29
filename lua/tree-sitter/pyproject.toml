@@ -19,8 +19,8 @@ license.text = "MIT"
 readme = "README.md"
 
 [project.urls]
-Homepage = "https://github.com/mistweaverco/kulala.nvim/lua/tree-sitter"
-Funding = "https://github.com/mistweaverco/kulala.nvim"
+Homepage = "https://github.com/bytrush/kulala.nvim/lua/tree-sitter"
+Funding = "https://github.com/bytrush/kulala.nvim"
 
 [project.optional-dependencies]
 core = ["tree-sitter~=0.24"]

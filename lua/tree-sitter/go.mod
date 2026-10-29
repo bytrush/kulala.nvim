@@ -1,4 +1,4 @@
-module github.com/mistweaverco/kulala.nvim/lua/tree-sitter
+module github.com/bytrush/kulala.nvim/lua/tree-sitter
 
 go 1.22
 

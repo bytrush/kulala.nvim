@@ -29,7 +29,7 @@ describe("send bug report", function()
     assert.has_strings(result, {
       "gh",
       "api",
-      "mistweaverco/kulala.nvim",
+      "bytrush/kulala.nvim",
       "title=Test issue",
       "body=This is a test issue body",
       "labels[]=report,automated",

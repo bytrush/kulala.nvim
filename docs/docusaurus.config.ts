@@ -10,7 +10,7 @@ const config: Config = {
   url: "https://kulala.mwco.app",
   baseUrl: "/",
 
-  organizationName: "mistweaverco",
+  organizationName: "bytrush",
   projectName: "kulala.nvim",
 
   onBrokenLinks: "throw",
@@ -29,7 +29,7 @@ const config: Config = {
       {
         docs: {
           sidebarPath: "./sidebars.ts",
-          editUrl: "https://github.com/mistweaverco/kulala.nvim/blob/main/docs",
+          editUrl: "https://github.com/bytrush/kulala.nvim/blob/main/docs",
         },
         theme: {
           customCss: "./src/css/custom.css",
@@ -68,7 +68,7 @@ const config: Config = {
           to: "/docs/scripts/overview",
         },
         {
-          href: "https://github.com/mistweaverco/kulala.nvim",
+          href: "https://github.com/bytrush/kulala.nvim",
           label: "GitHub",
           position: "right",
         },
@@ -104,12 +104,12 @@ const config: Config = {
           items: [
             {
               label: "GitHub",
-              href: "https://github.com/mistweaverco/kulala.nvim",
+              href: "https://github.com/bytrush/kulala.nvim",
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} mistweaverco.`,
+      copyright: `Copyright © ${new Date().getFullYear()} bytrush.`,
     },
     prism: {
       theme: prismThemes.github,

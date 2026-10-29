@@ -13,9 +13,9 @@ const BadgeList: BadgeItem[] = [
     altTag: 'Made with Lua',
   },
   {
-    imgUrl: 'https://img.shields.io/github/v/release/mistweaverco/kulala.nvim?style=for-the-badge',
+    imgUrl: 'https://img.shields.io/github/v/release/bytrush/kulala.nvim?style=for-the-badge',
     altTag: 'GitHub release (latest by date)',
-    url: 'https://github.com/mistweaverco/kulala.nvim/releases/latest',
+    url: 'https://github.com/bytrush/kulala.nvim/releases/latest',
   },
   {
     imgUrl: 'https://img.shields.io/badge/discord-join-7289da?style=for-the-badge&logo=discord',

@@ -562,7 +562,7 @@ Example:
 
 ```lua
 {
-"mistweaverco/kulala.nvim",
+"bytrush/kulala.nvim",
   opts = {
     certificates = {
       ["localhost"] = {

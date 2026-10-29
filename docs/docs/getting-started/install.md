@@ -15,7 +15,7 @@ Via [lazy.nvim](https://github.com/folke/lazy.nvim):
 ```lua title="init.lua"
 require("lazy").setup({
   {
-    "mistweaverco/kulala.nvim",
+    "bytrush/kulala.nvim",
     keys = {
       { "<leader>Rs", desc = "Send request" },
       { "<leader>Ra", desc = "Send all requests" },
