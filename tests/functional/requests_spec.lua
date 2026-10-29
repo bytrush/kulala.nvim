@@ -149,7 +149,7 @@ describe("requests", function()
       wait_for_requests(1)
 
       result = h.get_buf_lines(ui_buf):to_string()
-      assert.has_string(result, 'JQ Filter: { "Content": .headers["Content-Type"], "url": .url }')
+      assert.has_string(last_response().filter, '{ "Content": .headers["Content-Type"], "url": .url }')
 
       assert.is_same("application/json", last_response().json.Content)
       assert.is_same("https://httpbin.org/simple", last_response().json.url)

@@ -12,6 +12,7 @@ local GLOBALS = require("kulala.globals")
 local INLAY = require("kulala.inlay")
 local INT_PROCESSING = require("kulala.internal_processing")
 local Inspect = require("kulala.parser.inspect")
+local Json = require("kulala.utils.json")
 local KEYMAPS = require("kulala.config.keymaps")
 local Logger = require("kulala.logger")
 local PARSER = require("kulala.parser.request")
@@ -225,30 +226,30 @@ local function format_body(view)
   return body, filetype or contenttype.ft
 end
 
-local function update_filter()
-  local filter = vim.api.nvim_get_current_line()
-  if not filter:find("JQ Filter") then return end
+local function apply_filter(filter, response)
+  filter = vim.trim(filter or "")
+  if filter == "" then
+    if not response.filter then return true end
 
-  filter = vim.trim(filter:sub(12))
-  if Ext_processing.jq(filter, get_current_response()) then
-    M.show_body()
+    response.filter = nil
+    response.body = response.body_raw or response.body
+    response.json = Json.parse(response.body, { verbose = false }) or response.json
+  elseif not Ext_processing.jq(filter, response) then
+    Logger.warn("Failed to apply jq filter")
+    return false
   end
+
+  M.show_body()
+  return true
 end
 
 M.toggle_filter = function()
-  local buf = get_kulala_buffer()
-  local row = 4
+  local response = get_current_response()
 
-  if vim.api.nvim_buf_get_lines(buf, row, row + 1, false)[1]:find("JQ Filter") then
-    return vim.api.nvim_buf_set_lines(buf, row - 1, row + 1, false, {})
-  end
-
-  local filter = { "JQ Filter: " .. (get_current_response().filter or ""), "" }
-
-  vim.api.nvim_buf_set_lines(buf, row, row, false, filter)
-
-  UI_utils.highlight_range(buf, 0, { row, 0 }, { row, 12 }, "Question")
-  UI_utils.highlight_range(buf, 0, { row, 10 }, { row, -1 }, "Special")
+  vim.ui.input({ prompt = "JQ Filter: ", default = response.filter or "" }, function(filter)
+    if filter == nil then return end
+    _ = apply_filter(filter, response) and #filter > 0 and Logger.info("Applied jq filter: " .. filter)
+  end)
 end
 
 local function jump_to_response()
@@ -284,7 +285,6 @@ end
 M.show_body = function()
   local body, filetype = format_body()
   show(body, filetype, "body")
-  _ = get_current_response().filter and M.toggle_filter()
 end
 
 M.show_headers_body = function()
@@ -505,8 +505,6 @@ end
 M.keymap_enter = function()
   if get_current_response().method == "WS" then
     require("kulala.cmd.websocket").send()
-  elseif vim.api.nvim_get_current_line():find("JQ Filter") then
-    update_filter()
   else
     jump_to_response()
   end

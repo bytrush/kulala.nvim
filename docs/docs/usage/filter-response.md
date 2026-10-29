@@ -17,6 +17,6 @@ Content-Type: application/json
 
 ## Manually in the response buffer
 
-Use `F` to toggle the JQ filter in the response buffer.
+Press `F` to edit the JQ filter via the input prompt, prefilled with the current filter (if any).
 
-Enter the query string after `JQ Filter:` and press `Enter` to apply the filter.
+Enter a [jq](https://jqlang.github.io/jq/manual/) query to apply it, or leave it empty and submit to remove the filter and show the unfiltered body.

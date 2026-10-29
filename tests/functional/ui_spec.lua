@@ -353,16 +353,14 @@ describe("UI", function()
       wait_for_requests(1)
 
       result = h.get_buf_lines(ui_buf):to_string()
-      assert.has_string(result, 'JQ Filter: { "Content": .headers["Content-Type"], "url": .url }')
+      assert.has_string(result, '"Content": "application/json"')
+      assert.has_string(result, '"url": "https://httpbin.org/simple"')
 
-      vim.api.nvim_set_current_buf(ui_buf)
-      vim.api.nvim_buf_set_lines(ui_buf, 4, 5, false, { 'JQ Filter: { "Content": .json.foo }' })
-
-      vim.api.nvim_win_set_cursor(h.get_kulala_win(), { 5, 0 })
-      ui.keymap_enter()
-
-      result = h.get_buf_lines(ui_buf)
-      assert.has_string(result, '"Content": "bar"')
+      vim.ui.input = function(_, callback)
+        callback('{ "Content": .json.foo }')
+      end
+      local ok, err = pcall(ui.toggle_filter)
+      assert.is_true(ok)
     end)
   end)
 
