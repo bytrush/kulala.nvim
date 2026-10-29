@@ -4,14 +4,13 @@
 
 # kulala.nvim
 
-[![Made with love](assets/badge-made-with-love.svg)](https://github.com/mistweaverco/kulala.nvim/graphs/contributors)
-[![GitHub release (latest by date)](https://img.shields.io/github/v/release/mistweaverco/kulala.nvim?style=for-the-badge)](https://github.com/mistweaverco/kulala.nvim/releases/latest)
-[![Discord](assets/badge-discord.svg)](https://discord.gg/QyVQmfY4Rt)
+[![Made with love](assets/badge-made-with-love.svg)](https://github.com/bytrush/kulala.nvim/graphs/contributors)
+[![GitHub release (latest by date)](https://img.shields.io/github/v/release/bytrush/kulala.nvim?style=for-the-badge)](https://github.com/bytrush/kulala.nvim/releases/latest)
 
-[![Main status](https://img.shields.io/github/actions/workflow/status/mistweaverco/kulala.nvim/tests.yml?label=main&branch=main&style=for-the-badge)](https://github.com/mistweaverco/kulala.nvim/actions/workflows/tests.yml)
-[![Develop status](https://img.shields.io/github/actions/workflow/status/mistweaverco/kulala.nvim/tests.yml?branch=develop&label=develop&style=for-the-badge)](https://github.com/mistweaverco/kulala.nvim/actions/workflows/tests.yml)
+[![Main status](https://img.shields.io/github/actions/workflow/status/bytrush/kulala.nvim/tests.yml?label=main&branch=main&style=for-the-badge)](https://github.com/bytrush/kulala.nvim/actions/workflows/tests.yml)
+[![Develop status](https://img.shields.io/github/actions/workflow/status/bytrush/kulala.nvim/tests.yml?branch=develop&label=develop&style=for-the-badge)](https://github.com/bytrush/kulala.nvim/actions/workflows/tests.yml)
 
-[Requirements](https://neovim.getkulala.net/docs/getting-started/requirements) • [Install](#install) • [Usage](https://neovim.getkulala.net/docs/usage) • [HTTP File Spec](https://neovim.getkulala.net/docs/usage/http-file-spec) • [Kulala GH Action](https://github.com/mistweaverco/kulala-github-action)
+[Requirements](https://github.com/bytrush/kulala.nvim/blob/main/docs/docs/getting-started/requirements.md) • [Install](#install) • [Usage](https://github.com/bytrush/kulala.nvim/blob/main/docs/docs/usage/basic-usage.md) • [HTTP File Spec](https://github.com/bytrush/kulala.nvim/blob/main/docs/docs/usage/http-file-spec.md)
 
 <p></p>
 
@@ -57,11 +56,8 @@ Scratchpad: for making requests
 
 100% Compatibility with IntelliJ HTTP Client
 
+
 # •
-
-Together with our standalone products [Kulala Language Server](https://github.com/mistweaverco/kulala-ls) and [Kulala Formatter](https://github.com/mistweaverco/kulala-fmt), we aim to provide the best REST Client experience on the web without leaving your favourite editor!
-
-# ••
 
 Kulala team loves feature requests and feedback, so if you have any ideas or suggestions, please let us know!  
 We will be happy to implement them ❤️
@@ -73,7 +69,7 @@ We will be happy to implement them ❤️
 > [!WARNING]
 > Requires Neovim 0.10.0+ and cURL.
 >
-> See [requirements](https://neovim.getkulala.net/docs/getting-started/requirements).
+> See [requirements](https://github.com/bytrush/kulala.nvim/blob/main/docs/docs/getting-started/requirements.md).
 
 Via [lazy.nvim](https://github.com/folke/lazy.nvim):
 
@@ -82,7 +78,7 @@ Via [lazy.nvim](https://github.com/folke/lazy.nvim):
 ```lua
 require("lazy").setup({
   {
-    "mistweaverco/kulala.nvim",
+    "bytrush/kulala.nvim",
     keys = {
       { "<leader>Rs", desc = "Send request" },
       { "<leader>Ra", desc = "Send all requests" },
@@ -99,9 +95,9 @@ require("lazy").setup({
 ```
 
 > [!NOTE]
-> By default global keymaps are disabled, change to `global_keymaps = true` to get a complete set of key mappings for Kulala. Check the [keymaps documentation](https://neovim.getkulala.net/docs/getting-started/keymaps) for details.
+> By default global keymaps are disabled, change to `global_keymaps = true` to get a complete set of key mappings for Kulala. Check the [keymaps documentation](https://github.com/bytrush/kulala.nvim/blob/main/docs/docs/getting-started/keymaps.md) for details.
 
-See complete [configuration options](https://neovim.getkulala.net/docs/getting-started/configuration-options) for more information.
+See complete [configuration options](https://github.com/bytrush/kulala.nvim/blob/main/docs/docs/getting-started/configuration-options.mdx) for more information.
 
 ## Honorable mentions
 
